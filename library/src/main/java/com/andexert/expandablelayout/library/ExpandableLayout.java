@@ -36,6 +36,11 @@ import android.widget.RelativeLayout;
 
 public class ExpandableLayout extends RelativeLayout
 {
+    public interface OnExpandLayoutListener{
+        void onExpand();
+    }
+    
+    private OnExpandLayoutListener listener;
     private Boolean isAnimationRunning = false;
     private Boolean isOpened = false;
     private Integer duration;
@@ -58,6 +63,10 @@ public class ExpandableLayout extends RelativeLayout
     {
         super(context, attrs, defStyle);
         init(context, attrs);
+    }
+    
+    public setOnExpandLayoutListener(OnExpandLayoutListener listener){
+        this.listener = listener;
     }
 
     private void init(final Context context, AttributeSet attrs)
@@ -137,6 +146,9 @@ public class ExpandableLayout extends RelativeLayout
         };
         animation.setDuration(duration);
         v.startAnimation(animation);
+        if(listener != null){
+            listener.onExpand();
+        }
     }
 
     private void collapse(final View v)
