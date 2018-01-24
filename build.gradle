@@ -15,7 +15,7 @@ buildscript {
 allprojects {
 
     version = '1.2.2'
-    group = 'com.github.itaispector.expandablelayout'
+    group = 'com.github.traex.expandablelayout'
 
     repositories {
         jcenter()
